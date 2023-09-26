@@ -18,6 +18,7 @@ They predict all the information to locate a bounding box in 3D, but they also e
 - In KITTI, the angle is $\alpha \in [−\pi, \pi]$. Other info to predict: $(x,y,z)$ and $(h,w,l)$, all measured in the camera coordinate system.
 - The AP based on IoU is less sensitive to the shape and orientation of the bbox. *The AP will drop catastrophically if the 3D center location is perturbed!*
 - Inference heads (for each head, they use the same lightweight model $g(\cdot;\Phi)$, different weights):
+  - $c \times h \times w$ the 2D heatmap to locate targets of $c$ different classes.
   - $2 \times h \times w$ for the 3D bounding box center $(x_c,y_c)$ in the image space (they predict a heatmap).
   - $1 \times h \times w$ for the depth map (they use an inverse sigmoid transformation to handle the unbounded output)
   - $1 \times h \times w$ for the uncertainty in the depth estimation.
