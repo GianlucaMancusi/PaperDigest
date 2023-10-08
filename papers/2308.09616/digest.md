@@ -11,9 +11,25 @@ Recently 3D object detection from surround-view images has made notable advancem
 ## TL;DR;
 
 ## Key ideas
-- 
+- Use 2D priors to improve the 3D object detection. => for long-range objects, they use adaptive queries extracted from 2D priors.
 
 ## Notes
-- 
+- Input: surround-view images. Output: 3D object detections
+- Long-range distances pose challenges such as heavy computation costs and unstable convergence -> They propose to exploit high-quality 2D object priors to generate 3D adaptive queries that complement the 3D (fixed) global queries.
+- Surround-view methods can be categorized into: **BEV methods** and **sparse query-based methods**.
+- - BEV: converts perspective features to BEV features using a view transformer, then utilizing a 3D detector head to produce the 3D bounding boxes. (HIGH computation for long-range)
+  - Sparse query-based methods: intend to learn 3D global object queries from data, following the DETR style. Problem: the global fixed queries cannot adapt to dynamic scenarios and miss targets in long-range detection.
+  - Using 2D priors can improve the 3D detector recall, which is usually lower than the 2D one.
+  - Previous methods: Sim-MOD, MV2D, have already tried to use 2D priors, but for close-range tasks there are two issues:
+  - - inferior redundant predictions due to uncertain depth distribution along the object rays (**???**)
+    - larger deviations (**???**) in 3D space as the range increases due to frustum transformation (**???**)
+  - Problem: During training, the model exhibits a tendency to overfit on densely populated close objects while disregarding sparsely distributed distant objects.
+  - - To address the issues they propose 3D adaptive query generation from 2D proposals. => 2D proposals, depth for each of them, => project them to 3D.
+  - In the decoder of the queries: perspective-aware aggregation is employed across different image scales and views.
+  - - The **perspective-aware aggregation** learns sampling offsets for each query and dynamically enables interactions with favorable features. For example, distant object queries are beneficial to attend large-resolution features.
+  - They design a **range-modulated 3D denoising technique** to mitigate query error propagation and slow convergence.
+  - - They feed the model **multi-group noisy proposals** around GT into the decoder and train it to _recover 3D GT for positive ones_ and _reject negative ones_. _The injected level of noise depends on the distances and scales_. 
+
+
 ## Takeaways
-- 
+- Nowadays, 3D detectors have a notably lower recall than 2D detectors. => use 2D priors!
