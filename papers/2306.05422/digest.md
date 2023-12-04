@@ -1,4 +1,4 @@
-# Tracking Everything Everywhere All at Once
+# OmniMotion: Tracking Everything Everywhere All at Once
 By Qianqian Wang, Yen-Yu Chang, Ruojin Cai, Zhengqi Li, Bharath Hariharan, Aleksander Holynski, Noah Snavely
 
 Paper: https://arxiv.org/pdf/2306.05422.pdf
@@ -17,7 +17,12 @@ Venue: ICCV 2023
 - 
 
 ## Notes
--
+- **Goal**: Estimating full-length motion trajectories for every pixel in every frame of a video at test-time.
+- **Literature problems**: sparse feature tracking and dense optical flow can't model the motion of a video: pairwise optical flow fails to capture motion trajectories over long temporal windows, and spare tracking does not model the motion of all pixels. Locality of previous works results in accumulated errors over time. Even when prior methods do consider long-range context they operate in the 2D domain, resulting in a loss of tracking during occlusion events. Problems: long sequences, occlusions.
+- **Input**: a video sequence of $T$ frames, and a pair-wise optical flow estimates between each pair of consecutive frames.
+- **Omnimotion representation**: 
+
+
 
 ## Takeaways
 - 
