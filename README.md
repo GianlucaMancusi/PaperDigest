@@ -9,7 +9,8 @@ Digests of cutting-edge research papers in Computer Vision and Machine Learning
 
 ## Tracking
 
-### Tracking Any Points
+### Points Tracking
+- [2023] [DOT: Dense Optical Tracking: Connecting the Dots](https://github.com/GianlucaMancusi/PaperDigest/blob/main/papers/2312.00786/digest.md)
 - [2023] [OmniMotion: Tracking Everything Everywhere All at Once](https://github.com/GianlucaMancusi/PaperDigest/blob/main/papers/2306.05422/digest.md)
 
 ### Open-World/Vocabulary Tracking
